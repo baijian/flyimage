@@ -1,7 +1,7 @@
 flyimage
 ========
 
-![flyimage](flyimage.PNG)
+![flyimage](flyimages.png)
 
 Image processing server using OpenResty and Lua.
 
