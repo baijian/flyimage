@@ -6,3 +6,5 @@ scgi_temp/
 uwsgi_temp/
 logs/
 images/
+
+nginx.conf.compiled
