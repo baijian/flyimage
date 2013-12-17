@@ -1,6 +1,7 @@
 error_log stderr notice;
 daemon off;
-events {}
+events {
+}
 
 http {
     include /usr/local/openresty/nginx/conf/mime.types;
@@ -13,6 +14,22 @@ http {
             root cache;
             set_md5 $digest "$size/$path";
             try_files /$digest.$ext @image_server;
+        }
+    }
+
+    server {
+        listen 3002;
+        root web;
+        lua_code_cache off;
+        location / {
+            default_type text/html;
+            content_by_lua_file "web.lua";
+        }
+        location /static/ {
+            alias static/;
+        }
+        location /favicon.ico {
+            alias static/favicon.ico;
         }
     }
 }
