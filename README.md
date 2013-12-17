@@ -17,6 +17,10 @@ Just replace magick lua module file(maybe this `/usr/local/Cellar/luarocks/2.1.1
 with the latest module file [magick](https://github.com/leafo/magick/blob/master/magick/init.lua), the only release version
 has a bug.
 
+### Start It
+
+$ openrestynginx -p `pwd` -c nginx.conf.dev
+
 ### ImageMagick
 
 ImageMagick is a software suite to create edit compose or convert bitmap images.
