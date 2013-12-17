@@ -13,6 +13,10 @@ $ brew install imagemagick
 
 $ luarocks install --server=http://rocks.moonscript.org magick
 
+Just replace magick lua module file(maybe this `/usr/local/Cellar/luarocks/2.1.1/share/lua/5.1/magick/init.lua`)
+with the latest module file [magick](https://github.com/leafo/magick/blob/master/magick/init.lua), the only release version
+has a bug.
+
 ### ImageMagick
 
 ImageMagick is a software suite to create edit compose or convert bitmap images.
