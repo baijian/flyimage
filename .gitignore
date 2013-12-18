@@ -1,3 +1,6 @@
+*.lua
+!luarocks/*.lua
+.tup
 cache/
 client_body_temp/
 fastcgi_temp/
@@ -7,5 +10,3 @@ uwsgi_temp/
 logs/
 images/
 nginx.conf.compiled
-
-*.lua
