@@ -21,6 +21,13 @@ has a bug.
 
 $ openrestynginx -p `pwd` -c nginx.conf.dev
 
+$ curl -F "filename=@tmp.txt" http://localhost:3002/test
+
+$ curl -x proxy.com:8080 -F "filename=@tmp.txt;type=application/octet-stream" http://localhost:3002/test
+
+`curl -F` will use `multipart/form-data` manner to send data, and `curl -d` will use
+`application/x-www-url-encoded` manner to send data.
+
 ### ImageMagick
 
 ImageMagick is a software suite to create edit compose or convert bitmap images.

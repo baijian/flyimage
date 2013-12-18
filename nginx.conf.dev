@@ -21,9 +21,36 @@ http {
         listen 3002;
         root web;
         lua_code_cache off;
+        location /test {
+            content_by_lua '
+                local resty_sha1 = require "resty.sha1"
+                local upload = require "resty.upload"
+                local cjson = require "cjson"
+                local chunk_size = 4096
+                local form, err = upload.new(chunk_size)
+                if not form then
+                    ngx.log(ngx.ERR, "failed to new upload: ", err)
+                    ngx.exit(500);
+                end
+                form:set_timeout(1000) --1s
+                while true do
+                    local typ, res, err = form:read()
+                    if not typ then
+                        ngx.say("fail to read: ", err)
+                        return
+                    end
+                    if typ == "eof" then
+                        break
+                    end
+                    ngx.say("read: ", cjson.encode({typ, res}))
+                end
+                local typ, res, err = form:read()
+                ngx.say("read: ", cjson.encode({typ, res}))
+            ';
+        }
         location / {
             default_type text/html;
-            content_by_lua_file "web/web.lua";
+            content_by_lua_file "web.lua";
         }
         location /static/ {
             alias static/;
